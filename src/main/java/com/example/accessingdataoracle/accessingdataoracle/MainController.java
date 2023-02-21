@@ -17,16 +17,30 @@ public class MainController {
   private UserRepository userRepository;
 
   @PostMapping(path="/add") // Map ONLY POST Requests
-  public @ResponseBody String addNewUser (@RequestParam String name
+  public @ResponseBody String add (@RequestParam String name
       , @RequestParam String email) {
     // @ResponseBody means the returned String is the response, not a view name
     // @RequestParam means it is a parameter from the GET or POST request
+    userRepository.addNewUser(name,email);
+    return "Saved\n";
+  }
 
-    UserData n = new UserData();
-    n.setName(name);
-    n.setEmail(email);
-    userRepository.save(n);
-    return "Saved";
+  @PostMapping(path="/update") // Map ONLY POST Requests
+  public @ResponseBody String updateUserName (@RequestParam Integer id
+      , @RequestParam String name) {
+    // @ResponseBody means the returned String is the response, not a view name
+    // @RequestParam means it is a parameter from the GET or POST request
+    userRepository.updateUserName(id,name);
+    return "Updated\n";
+  }
+
+  @PostMapping(path="/delete") // Map ONLY POST Requests
+  public @ResponseBody String delete (@RequestParam Integer id
+      ) {
+    // @ResponseBody means the returned String is the response, not a view name
+    // @RequestParam means it is a parameter from the GET or POST request
+    userRepository.deleteById(id);
+    return "Deleted\n";
   }
 
   @GetMapping(path="/all")
