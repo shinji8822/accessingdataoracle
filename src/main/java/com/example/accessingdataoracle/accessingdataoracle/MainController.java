@@ -27,10 +27,10 @@ public class MainController {
 
   @PostMapping(path="/update") // Map ONLY POST Requests
   public @ResponseBody String updateUserName (@RequestParam Integer id
-      , @RequestParam String name) {
+      , @RequestParam(required = false) String name, @RequestParam(required = false) String email) {
     // @ResponseBody means the returned String is the response, not a view name
     // @RequestParam means it is a parameter from the GET or POST request
-    userRepository.updateUserName(id,name);
+    userRepository.updateUserName(id,name,email);
     return "Updated\n";
   }
 

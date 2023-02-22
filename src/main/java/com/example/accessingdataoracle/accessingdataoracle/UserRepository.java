@@ -20,8 +20,8 @@ public interface UserRepository extends CrudRepository<UserData, Integer> {
     List<UserData> findById(int id);
 
     @Modifying
-    @Query(value = "update user_data set name = :name where id = :id", nativeQuery = true)
-    void updateUserName(@Param("id") int id, @Param("name") String name);
+    @Query(value = "update user_data set name = :name,email = :email where id = :id", nativeQuery = true)
+    void updateUserName(@Param("id") int id, @Param("name") String name, @Param("email") String email);
 
     @Modifying
     @Query(value = "delete from user_data where id = :id", nativeQuery = true)
