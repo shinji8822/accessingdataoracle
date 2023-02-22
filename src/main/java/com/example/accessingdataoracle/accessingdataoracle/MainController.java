@@ -50,7 +50,7 @@ public class MainController {
   }
 
   @GetMapping(path="/findById/{id}")
-  public @ResponseBody java.util.List<UserData> findUsers(@PathVariable("id") int id) {
+  public @ResponseBody Iterable<UserData> findUsers(@PathVariable("id") int id) {
     // This returns a JSON or XML with the users
     return userRepository.findById(id);
   }
